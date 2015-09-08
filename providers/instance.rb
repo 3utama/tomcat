@@ -55,10 +55,9 @@ action :configure do
     end
 
     # Don't make a separate home, just link to base
-    if new_resource.home != new_resource.base
-      link new_resource.home do
-        to new_resource.base
-      end
+    link new_resource.home do
+      to new_resource.base
+      only_if { new_resource.home != new_resource.base }
     end
 
     # config_dir needs symlinks to the files we're not going to create

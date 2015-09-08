@@ -250,10 +250,9 @@ action :configure do
     end
   end
 
-  unless new_resource.truststore_file.nil?
-    cookbook_file "#{new_resource.config_dir}/#{new_resource.truststore_file}" do
-      mode '0644'
-    end
+  cookbook_file "#{new_resource.config_dir}/#{new_resource.truststore_file}" do
+    mode '0644'
+    not_if { new_resource.truststore_file.nil? }
   end
 
   service instance do

@@ -59,7 +59,7 @@ end
 node.set_unless['tomcat']['keystore_password'] = secure_password
 node.set_unless['tomcat']['truststore_password'] = secure_password
 
-if node['tomcat']['run_base_instance']
+if node['tomcat']['run_base_instance'] == true
   tomcat_instance 'base' do
     port node['tomcat']['port']
     proxy_port node['tomcat']['proxy_port']
